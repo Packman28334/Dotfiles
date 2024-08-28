@@ -1,0 +1,239 @@
+// -*- mode: json -*-
+[
+    {
+        "layer": "top",
+        "position": "top",
+        "modules-left": [
+            "clock#1",
+            "clock#2",
+            "custom/weather",
+	    "cava"
+        ],
+        "modules-center": ["hyprland/window"],
+        "modules-right": [
+            "network",
+	    "bluetooth",
+            "battery",
+	    "power-profiles-daemon",
+            "pulseaudio",
+            "custom/notification",
+            "privacy",
+            "tray"
+        ],
+        "user": {
+            "format": " {user}",
+            "icon": true
+        },
+        "clock#1": {
+            "format": "󰃭   {:%A, %B %Od}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode": "month",
+                "mode-mon-col": 3,
+                "weeks-pos": "right",
+                "on-scroll": 1,
+                "format": {
+                    "months": "<span color='#ffead3'><b>{}</b></span>",
+                    "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                    "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                    "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                    "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+                }
+            },
+            "actions": {
+                "on-click": "shift_up",
+                "on-click-right": "shift_down",
+                "on-click-middle": "mode"
+            }
+        },
+        "clock#2": {
+            "format": "󰥔   {:%I:%M %p}",
+            "tooltip-format": "{:%F at %T in %Z (UTC%Ez)}"
+        },
+        "mpris": {
+            "status-icons": {
+                "paused": "󰏤",
+                "stopped": "󰓛"
+            },
+            "player-icons": {
+                "default": "󰎆",
+                "kdeconnect": "",
+                "spotify": "󰓇",
+                "firefox": "󰈹",
+                "firefox-devedition": "󰈹"
+            },
+            "dynamic-order": [
+                "title",
+                "artist",
+                "album",
+                "length"
+            ],
+            "dynamic-importance-order": [
+                "title",
+                "length",
+                "artist",
+                "album"
+            ],
+            "title-len": 35,
+            "artist-len": 25,
+            "album-len": 20,
+            "dynamic-len": 30,
+            "format": "{player_icon}  {dynamic}",
+            "format-paused": "{status_icon}  {dynamic}"
+        },
+        "network": {
+            "format": "{ifname}",
+            "format-wifi": "{icon}   {essid}",
+            "format-icons": [
+                "󰤟",
+                "󰤢",
+                "󰤥",
+                "󰤨"
+            ],
+            "format-ethernet": "󱎔   {ifname}",
+            "format-linked": "󰌷   {ifname}",
+            "format-disconnected": "󰪎 ",
+            "tooltip-format": "{ifname} via {gwaddr}",
+            "tooltip-format-wifi": "Connected to {essid} ({signalStrength}󰏰 Strength) over {ifname} via {gwaddr} - {ipaddr}",
+            "tooltip-format-ethernet": "󱎔 {ifname}",
+            "tooltip-disconnected": "Disconnected",
+	    "on-click": "kitty nmtui",
+            "on-click-right": "nm-connection-editor"
+        },
+        "pulseaudio": {
+            "format": "{icon}   {volume:2}󰏰",
+            "format-bluetooth": "{icon}   {volume}󰏰",
+            "format-muted": "󰝟",
+            "format-icons": {
+                "headphone": "󰋋",
+                "hands-free": "󰋋",
+                "headset": "󰋋",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "󰖀",
+                    "󰕾"
+                ]
+            },
+            "scroll-step": 5,
+            "on-click": "pamixer -t",
+            "on-click-right": "pavucontrol"
+        },
+        "bluetooth": {
+            "format": "󰂯",
+            "format-disabled": "󰂲",
+            "format-off": "󰂲",
+            "format-connected": "󰂱",
+            "format-connected-battery": "󰂱 {device_battery_percentage}󰏰",
+            "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+            "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+            "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+            "on-click": "blueman-manager",
+            "on-click-right": "rfkill toggle bluetooth"
+        },
+        "battery": {
+            "states": {
+                "warning": 30,
+                "critical": 10
+            },
+            "format": "{icon}  {capacity}󰏰",
+            "format-charging": "{icon}  {capacity}󰏰",
+            "format-icons": {
+                "charging": [
+                    "󰢜",
+                    "󰂆",
+                    "󰂇",
+                    "󰂈",
+                    "󰢝",
+                    "󰂉",
+                    "󰢞",
+                    "󰂊",
+                    "󰂋",
+                    "󰂅"
+                ],
+                "default": [
+                    "󰁺",
+                    "󰁻",
+                    "󰁼",
+                    "󰁽",
+                    "󰁾",
+                    "󰁿",
+                    "󰂀",
+                    "󰂁",
+                    "󰂂",
+                    "󰁹"
+                ]
+            }
+        },
+        "power-profiles-daemon": {
+            "format": "{icon} ",
+            "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+            "tooltip": true,
+            "format-icons": {
+                "default": " ",
+                "performance": " ",
+                "balanced": "",
+                "power-saver": ""
+            }
+        },
+        "tray": {
+            "icon-size": 25,
+            "spacing": 5,
+            "show-passive-items": true
+        },
+        "privacy": {
+            "icon-spacing": 4,
+            "icon-size": 20,
+            "transition-duration": 200,
+            "modules": [
+                {
+                    "type": "screenshare",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                },
+                {
+                    "type": "audio-in",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                }
+            ]
+        },
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+                "notification": "󱅫",
+                "none": "󰂚",
+                "dnd-notification": "󰂛<sup></sup>",
+                "dnd-none": "󰂛",
+                "inhibited-notification": "󰂠<sup></sup>",
+                "inhibited-none": "󰂠",
+                "dnd-inhibited-notification": "󰂛<sup></sup>",
+                "dnd-inhibited-none": "󰂛"
+            },
+            "max-length": 3,
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "sleep 0.2 && swaync-client -t -sw",
+            "on-click-right": "sleep 0.2 && swaync-client -d -sw",
+            "on-click-middle": "sleep 0.2 && swaync-client -C -sw",
+            "escape": true
+        },
+        "custom/kde-connect": {
+            "exec": "sh ~/.config/waybar/custom_modules/custom-kdeconnect.sh battery",
+            "format": "{}",
+            "on-click": "kdeconnect-settings",
+            "interval": 30
+        },
+        "custom/weather": {
+            "exec": "sh ~/.config/waybar/custom_modules/weather.sh",
+            "on-click": "xdg-open https://duckduckgo.com/?q=weather",
+            "return-type": "json",
+            "format": "{}",
+            "interval": 60
+        }
+    }
+]
